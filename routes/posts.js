@@ -4,7 +4,8 @@ const { asyncErrorHandler } = require('../middleware');
 const {
     postIndex,
     postNew,
-    postCreate
+    postCreate,
+    postShow
 } = require('../controllers/posts');
 
 /* GET posts index /posts */
@@ -17,9 +18,7 @@ router.get('/new', postNew);
 router.post('/', asyncErrorHandler(postCreate));
 
 /* GET posts show /posts/:id */
-router.get('/:id', (req, res, next) => {
-    res.send('SHOW /posts/:id');
-});
+router.get('/:id', asyncErrorHandler(postShow));
 
 /* GET posts edit /posts/:id/edit */
 router.get('/:id/edit', (req, res, next) => {
