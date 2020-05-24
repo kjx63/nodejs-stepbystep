@@ -40,12 +40,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// In a Connect or Express-based application, passport.initialize() middleware is required to initialize Passport. 
 // configure Passport/Passport-Local (https://github.com/saintedlama/passport-local-mongoose);
 app.use(session({
     secret: 'Juke is the best dog!',
     resave: false,
     saveUninitialized: true,
 }));
+
+// http://www.passportjs.org/docs/configure/
+app.use(passport.initialize());
+app.use(passport.session());
+
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
