@@ -12,4 +12,11 @@ module.exports = {
         res.render('posts/new');
     },
 
+    // Post Create
+    async postCreate(req, res, next) {
+        let post = Post.create(req.body.post);
+        console.log(post);
+        res.redirect(`/posts/${post.id}`);
+    }
+
 }

@@ -9,6 +9,10 @@ const PostSchema = new Schema({
     price: String,
     description: String,
     images: [String],
+    date: {
+        type: Date,
+        default: Date.now
+    },
     location: String,
     lat: Number,
     lng: Number,
@@ -19,7 +23,7 @@ const PostSchema = new Schema({
     reviews: [{
         type: Schema.Types.ObjectId,
         ref: 'Review'
-    }]
+    }],
 });
 
 module.exports = mongoose.model('Post', PostSchema);
