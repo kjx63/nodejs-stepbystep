@@ -4,7 +4,11 @@ const path = require('path');
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const passport = require('passport');
+const session = require('express-session')
+const User = require('./models/user');
 
+// require routes
 const index = require('./routes/index');
 const posts = require('./routes/posts');
 const reviews = require('./routes/reviews');
@@ -25,6 +29,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// configure Passport/Passport-Local (https://github.com/saintedlama/passport-local-mongoose)
+app.use(session({
+    secret: 'Juke is the best dog!',
+    resave: false,
+    saveUninitialized: true,
+}));
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// Mount routes
 app.use('/', index);
 app.use('/posts', posts);
 app.use('/posts/:id/reviews', reviews);
