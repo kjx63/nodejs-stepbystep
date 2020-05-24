@@ -8,6 +8,7 @@ const passport = require('passport');
 const session = require('express-session')
 const User = require('./models/user');
 const mongoose = require('mongoose');
+const methodOverride = require('method-override');
 
 // require routes
 const index = require('./routes/index');
@@ -39,6 +40,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// https://github.com/expressjs/method-override
+app.use(methodOverride('_method'));
 
 // In a Connect or Express-based application, passport.initialize() middleware is required to initialize Passport. 
 // configure Passport/Passport-Local (https://github.com/saintedlama/passport-local-mongoose);
