@@ -7,6 +7,7 @@ const logger = require('morgan');
 const passport = require('passport');
 const session = require('express-session')
 const User = require('./models/user');
+const mongoose = require('mongoose');
 
 // require routes
 const index = require('./routes/index');
@@ -14,6 +15,16 @@ const posts = require('./routes/posts');
 const reviews = require('./routes/reviews');
 
 const app = express();
+
+// connect to the database
+// - https://mongoosejs.com/docs/index.html
+mongoose.connect('mongodb://localhost:27017/nodejs_basics', { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true });
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+    console.log('We\'re connected!');
+
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -64,8 +75,6 @@ let port = process.env.PORT;
 if (port == null || port == "") {
     port = 3000;
 }
-app.listen(port, () => {
-    console.log(`Server Listening on Port ${port}`);
-});
+app.listen(port, () => {});
 
 module.exports = app;
