@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// configure Passport/Passport-Local (https://github.com/saintedlama/passport-local-mongoose)
+// configure Passport/Passport-Local (https://github.com/saintedlama/passport-local-mongoose);
 app.use(session({
     secret: 'Juke is the best dog!',
     resave: false,
