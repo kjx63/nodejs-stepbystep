@@ -68,6 +68,7 @@ app.use(function(req, res, next) {
     // Set the default user 
     req.user = {
         '_id': '5eca72c2f445070f3c3a9071', // Kenji
+        // '_id': '5eca75c551b2790ff7c1e5cd', // Kenji2
         'username': 'Kenji',
     }
     res.locals.currentUser = req.user; // any views it gets rendered, we have currentUser available
