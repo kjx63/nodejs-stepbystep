@@ -1,27 +1,44 @@
 <% layout('layouts/post-show-layout') -%>
-    <h1>
-        <%= post.title %>
-    </h1>
 
-    <div>Price:
-        <%= post.price%>
-    </div>
-    <div>
-        <%= post.description%>
-    </div>
-    <div>
-        <%= post.description%>
-    </div>
-    <div>Published:
-        <%= post.date%>
-    </div>
-    <div>
-        <a href="/posts/<%= post.id%>/edit">
-            <button>Edit</button>
-        </a>
-    </div>
-    <div>
-        <form action="/posts/<%= post.id %>?_method=DELETE" method="POST">
-            <input type="submit" value="Delete">
-        </form>
+    <div class="row">
+        <div class="col-md-3">
+            <ul class="list-group">
+                <li class="list-group-item active">Info 1</li>
+                <li class="list-group-item">Info 2</li>
+                <li class="list-group-item">Info 3</li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <div class="card mb-4">
+                <div class="text-center">
+                    <img class="card-img-top" src="<%= post.image %>" alt="<%= post.image %>" style="max-width: 25rem;" />
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= post.title %>
+                    </h5>
+                    <p>Price:
+                        <%= post.price%>
+                    </p>
+                    <hr>
+                    <p>Author here</p>
+                    <div>Published:
+                        <%= post.date%>
+                    </div>
+                    <p class="card-text">
+                        <%= post.description%>
+                    </p>
+                    <div class="d-flex justify-content-start mr-4">
+                        <a href="/posts/<%= post.id%>/edit">
+                            <button class="btn btn-warning">Edit</button>
+                        </a>
+                        <form action="/posts/<%= post.id %>?_method=DELETE" method="POST" style="margin-left: 10px;">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
     </div>
