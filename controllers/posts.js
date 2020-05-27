@@ -9,7 +9,7 @@ module.exports = {
     },
     // Posts New
     postNew(req, res, next) {
-        res.render('posts/new');
+        res.render('posts/new', { title: "Posts New!" });
     },
 
     // Post Create
