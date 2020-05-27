@@ -9,7 +9,7 @@ module.exports = {
     },
     // Posts New
     postNew(req, res, next) {
-        res.render('posts/new', { title: "Posts New!" });
+        res.render('posts/new');
     },
 
     // Post Create
@@ -27,7 +27,7 @@ module.exports = {
     // Post Edit
     async postEdit(req, res, next) {
         let post = await Post.findById(req.params.id);
-        res.render('posts/edit', { post, title: "Post Edit!" });
+        res.render('posts/edit');
     },
     // Post Update
     async postUpdate(req, res, next) {
