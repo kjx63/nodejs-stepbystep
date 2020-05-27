@@ -40,8 +40,7 @@
                 </div>
             </div>
             <div>
-                <h2>Reviews</h2>
-                <h3>Create a Review</h3>
+                <h2>Create a Review</h2>
                 <div>
                     <form class="form text-center" action="/posts/<%= post.id%>/reviews" method="POST">
                         <div>
@@ -55,6 +54,16 @@
                         <button class="btn btn-lg btn-success btn-block" type="submit">Review</button>
                     </form>
                 </div>
+
+                <!-- display all reviews -->
+                <h3>Reviews</h3>
+                <% post.reviews.forEach(function(review){ %>
+                    <div>
+                        <%= review.body%>
+                            Rating:
+                            <%= review.rating%>
+                    </div>
+                    <% })%>
             </div>
         </div>
     </div>
