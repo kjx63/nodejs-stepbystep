@@ -66,7 +66,7 @@
                 </div>
                 <div class="card-body">
                     <% post.reviews.forEach(function(review){ %>
-                        <div>
+                        <div class="mb-2">
                             Author:
                             <%= review.author.username%>
                                 <br>
@@ -74,13 +74,34 @@
                                     <br> Rating:
                                     <%= review.rating%>
                         </div>
+                        <div>
+                            <button class="btn btn-warning toggle-edit-form mb-3">Edit</button>
+
+                            <form class="edit-review-form" action="/posts/<%= post.id %>/reviews/<%= review.id %>?_method=PUT" method="POST">
+                                <div>
+                                    <label for="inputBody" class="sr-only">Body</label>
+                                    <textarea class="form-control" id="inputBody" name="review[body]" placeholder="review here" required><%= review.body%></textarea>
+                                </div>
+                                <div>
+                                    <label for="inputRating">Rating: </label>
+                                    <input id="inputRating" type="number" name="review[rating]" min="1" max="5" step="1" value="<%= review.rating%>" required>
+                                </div>
+                                <input class="btn btn-primary" type="submit" value="Update" />
+                            </form>
+                        </div>
+
                         <hr>
                         <% })%>
 
                 </div>
             </div>
 
-
         </div>
     </div>
-    </div>
+
+    <script>
+        $('.toggle-edit-form').on('click', function() {
+            $(this).text() === 'Edit' ? $(this).text('cancel') : $(this).text('Edit');
+            $(this).siblings('.edit-review-form').toggle();
+        })
+    </script>
