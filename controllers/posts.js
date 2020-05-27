@@ -5,7 +5,7 @@ module.exports = {
     async postIndex(req, res, next) {
         let posts = await Post.find({});
         // looing inside the /views by default
-        res.render('posts/index', { posts: posts });
+        res.render('posts/index', { posts: posts, title: "Posts Index!" });
     },
     // Posts New
     postNew(req, res, next) {
@@ -27,7 +27,7 @@ module.exports = {
     // Post Edit
     async postEdit(req, res, next) {
         let post = await Post.findById(req.params.id);
-        res.render('posts/edit', { post });
+        res.render('posts/edit', { post, title: "Post Edit!" });
     },
     // Post Update
     async postUpdate(req, res, next) {

@@ -1,26 +1,27 @@
-<h1>Post Index!</h1>
+<% layout('layouts/boilerplate') -%>
+    <h1>Post Index!</h1>
 
-<% posts.forEach(post => {%>
-    <div>
-        <h2>
-            <%= post.title %>
-        </h2>
+    <% posts.forEach(post => {%>
+        <div>
+            <h2>
+                <%= post.title %>
+            </h2>
 
-        <div>Price:
-            <%= post.price%>
+            <div>Price:
+                <%= post.price%>
+            </div>
+            <div>
+                <%= post.description%>
+            </div>
+            <div>
+                <%= post.description%>
+            </div>
+            <div>Published:
+                <%= post.date%>
+            </div>
+            <div>
+                <a href="/posts/<%= post.id%>">View more</a>
+            </div>
         </div>
-        <div>
-            <%= post.description%>
-        </div>
-        <div>
-            <%= post.description%>
-        </div>
-        <div>Published:
-            <%= post.date%>
-        </div>
-        <div>
-            <a href="/posts/<%= post.id%>">View more</a>
-        </div>
-    </div>
 
-    <% }); %>
+        <% }); %>

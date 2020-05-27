@@ -1,26 +1,27 @@
-<h1>
-    <%= post.title %>
-</h1>
+<% layout('layouts/post-show-layout') -%>
+    <h1>
+        <%= post.title %>
+    </h1>
 
-<div>Price:
-    <%= post.price%>
-</div>
-<div>
-    <%= post.description%>
-</div>
-<div>
-    <%= post.description%>
-</div>
-<div>Published:
-    <%= post.date%>
-</div>
-<div>
-    <a href="/posts/<%= post.id%>/edit">
-        <button>Edit</button>
-    </a>
-</div>
-<div>
-    <form action="/posts/<%= post.id %>?_method=DELETE" method="POST">
-        <input type="submit" value="Delete">
-    </form>
-</div>
+    <div>Price:
+        <%= post.price%>
+    </div>
+    <div>
+        <%= post.description%>
+    </div>
+    <div>
+        <%= post.description%>
+    </div>
+    <div>Published:
+        <%= post.date%>
+    </div>
+    <div>
+        <a href="/posts/<%= post.id%>/edit">
+            <button>Edit</button>
+        </a>
+    </div>
+    <div>
+        <form action="/posts/<%= post.id %>?_method=DELETE" method="POST">
+            <input type="submit" value="Delete">
+        </form>
+    </div>
