@@ -62,11 +62,22 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// set title middleware
+// pre-route middleware
+// set local variables middleware
 app.use(function(req, res, next) {
+    // set default page title
     res.locals.title = 'Surf Shop';
+
+    // set success flash message
+    res.locals.success = req.session.success || ''; // if there's no req.session.success, then we need it to empty string ''.
+    delete req.session.success; // After dealing with the session, need to get rid of it.
+    // set error flash message
+    res.locals.error = req.session.error || '';
+    delete req.session.error;
+
+    // continue onto next function in middleware chain
     next();
-})
+});
 
 // Mount routes
 app.use('/', index);
@@ -78,15 +89,18 @@ app.use(function(req, res, next) {
     next(createError(404));
 });
 
-// error handler
+// post-route error handling middleware
 app.use(function(err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    // // set locals, only providing error in development
+    // res.locals.message = err.message;
+    // res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
+    // // render the error page
+    // res.status(err.status || 500);
+    // res.render('error');
+    console.log(err); // console.log() the full err for developers
+    req.session.error = err.message; // for users
+    res.redirect('back');
 });
 
 let port = process.env.PORT;

@@ -15,11 +15,13 @@ module.exports = {
     // Post Create
     async postCreate(req, res, next) {
         let post = await Post.create(req.body.post);
+        req.session.success = 'Post created successfully!';
         res.redirect(`/posts/${post.id}`);
     },
 
     //Post Show 
     async postShow(req, res, next) {
+        // throw new Error('This is a big bad error!'); // a simple way for us to create an error in our application 
         let post = await Post.findById(req.params.id);
         res.render('posts/show', { post });
     },
