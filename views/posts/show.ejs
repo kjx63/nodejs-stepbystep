@@ -32,8 +32,8 @@
                         <a href="/posts/<%= post.id%>/edit">
                             <button class="btn btn-warning">Edit</button>
                         </a>
-                        <form action="/posts/<%= post.id %>?_method=DELETE" method="POST" style="margin-left: 10px;">
-                            <button class="btn btn-danger">Delete</button>
+                        <form action="/posts/<%= post.id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger ml-2">Delete</button>
                         </form>
                     </div>
 
@@ -76,7 +76,8 @@
                         </div>
                         <% if(review.author.equals(currentUser._id)){ %>
                             <div>
-                                <button class="btn btn-warning toggle-edit-form mb-3">Edit</button>
+
+                                <button class="btn btn-warning toggle-edit-form mb-2 btn-sm">Edit</button>
                                 <form class="edit-review-form" action="/posts/<%= post.id %>/reviews/<%= review.id %>?_method=PUT" method="POST">
                                     <div>
                                         <label for="inputBody" class="sr-only">Body</label>
@@ -86,8 +87,13 @@
                                         <label for="inputRating">Rating: </label>
                                         <input id="inputRating" type="number" name="review[rating]" min="1" max="5" step="1" value="<%= review.rating%>" required>
                                     </div>
-                                    <input class="btn btn-primary" type="submit" value="Update" />
+                                    <input class="btn btn-primary btn-sm mb-2" type="submit" value="Update" />
                                 </form>
+
+                                <form action="/posts/<%= post.id %>/reviews/<%= review.id %>?_method=DELETE" method="POST">
+                                    <input class="btn btn-danger btn-sm" type="submit" value="Delete" />
+                                </form>
+
                             </div>
                             <% } %>
                                 <hr>
