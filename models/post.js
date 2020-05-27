@@ -6,9 +6,9 @@ const Schema = mongoose.Schema;
 
 const PostSchema = new Schema({
     title: String,
-    price: String,
+    price: Number,
     description: String,
-    images: [String],
+    image: String,
     date: {
         type: Date,
         default: Date.now
