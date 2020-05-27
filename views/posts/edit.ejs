@@ -1,13 +1,34 @@
 <% layout('layouts/boilerplate') -%>
-    <h1>Edit Post!</h1>
 
-    <form action="/posts/<%= post.id %>?_method=PUT" method="POST">
-        <div><input type="text" name="post[title]" placeholder="Title" value="<%= post.title  %>"></div>
-        <div><input type="text" name="post[price]" placeholder="Price" value="<%= post.price  %>"></div>
-        <div>
-            <textarea name="post[description]" placeholder="Description"><%= post.description  %></textarea>
+    <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+            <h1 class="h2 mb-3 font-weight-normal">Edit Post</h1>
         </div>
-        <div><input type="text" name="post[location]" placeholder="Location" value="<%= post.location  %>"></div>
+        <div class="col-xs-12 col-md-6 col-lg-4">
+            <form class="form text-center" action="/posts/<%= post.id %>?_method=PUT" method="POST">
+                <div>
+                    <label for="inputTitle" class="sr-only">Title</label>
+                    <input type="text" id="inputTitle" class="form-control" name="post[title]" placeholder="Title" value="<%= post.title  %>" required autofocus>
+                </div>
+                <div>
+                    <label for="inputImage" class="sr-only">Image URL</label>
+                    <input type="text" id="inputImage" class="form-control" name="post[image]" placeholder="Image" required value="<%= post.image  %>">
+                </div>
+                <div>
+                    <label for="inputPrice" class="sr-only">Price</label>
+                    <input type="number" id="inputPrice" class="form-control" name="post[price]" placeholder="Price" required value="<%= post.price  %>" step="1">
+                </div>
+                <div>
+                    <label for="inputLocation" class="sr-only">Location</label>
+                    <input type="text" id="inputLocation" class="form-control" name="post[location]" placeholder="Location" required value="<%= post.location  %>"></textarea>
+                </div>
+                <div>
+                    <label for="inputTextarea" class="sr-only">Description</label>
+                    <textarea id="inputTextarea" class="form-control" name="post[description]" placeholder="Description" required><%= post.description  %></textarea>
+                </div>
 
-        <input type="submit">
-    </form>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script src="/javascripts/post-edit.js"></script>

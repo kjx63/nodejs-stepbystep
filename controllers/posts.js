@@ -29,7 +29,7 @@ module.exports = {
     // Post Edit
     async postEdit(req, res, next) {
         let post = await Post.findById(req.params.id);
-        res.render('posts/edit');
+        res.render('posts/edit', { post });
     },
     // Post Update
     async postUpdate(req, res, next) {
