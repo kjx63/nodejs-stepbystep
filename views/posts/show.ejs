@@ -39,6 +39,22 @@
 
                 </div>
             </div>
-
+            <div>
+                <h2>Reviews</h2>
+                <h3>Create a Review</h3>
+                <div>
+                    <form class="form text-center" action="/posts/<%= post.id%>/reviews" method="POST">
+                        <div>
+                            <label for="inputBody" class="sr-only">Body</label>
+                            <textarea class="form-control" id="inputBody" name="review[body]" placeholder="review here" required></textarea>
+                        </div>
+                        <div>
+                            <label for="inputRating">Rating: </label>
+                            <input id="inputRating" type="number" name="review[rating]" min="1" max="5" step="1" required>
+                        </div>
+                        <button class="btn btn-lg btn-success btn-block" type="submit">Review</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
