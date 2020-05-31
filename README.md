@@ -1,2 +1,2 @@
-# Review Authorization 
+# Continue User Authentication  
 - Add isReviewAuthor async middleware
