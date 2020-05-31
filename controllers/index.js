@@ -2,6 +2,11 @@ const User = require('../models/user');
 const passport = require('passport')
 
 module.exports = {
+    // GET /register
+    getRegister(req, res, next) {
+        res.render('register', { title: 'Register' });
+    },
+
     // Post /register
     // In ES6, this is how you create the method on this object{}
     async postRegister(req, res, next) {
@@ -13,8 +18,21 @@ module.exports = {
             image: req.body.image
         });
 
-        await User.register(newUser, req.body.password);
+        let user = await User.register(newUser, req.body.password);
+        // to establish a login session
+        // // http://www.passportjs.org/docs/login/
+        req.login(user, function(err) {
+            if (err) return next(err);
+            req.session.success = `Welcome to Surf Shop, ${user.username}!`
+            res.redirect('/');
+        });
+        // When the login operation completes, user will be assigned to req.user.
         res.redirect('/');
+    },
+
+    // GET /login
+    getLogin(req, res, next) {
+        res.render('login', { title: 'Login' });
     },
 
     // POST /login
