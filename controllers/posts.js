@@ -44,6 +44,7 @@ module.exports = {
     //Post Destroy 
     async postDestroy(req, res, next) {
         await Post.findByIdAndRemove(req.params.id);
+        req.session.success = 'Post deleteted successfully'
         res.redirect('/posts');
     }
 
