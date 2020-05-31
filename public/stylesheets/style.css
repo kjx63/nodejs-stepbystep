@@ -37,3 +37,10 @@ a {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+
+/* views/register & login.ejs */
+
+.form input[name="password"] {
+    margin-bottom: -1px;
+}

@@ -7,7 +7,7 @@ const {
     postLogin,
     getLogout
 } = require('../controllers');
-const { asyncErrorHandler } = require('../middleware');
+const { asyncErrorHandler, checkIfUserExists } = require('../middleware');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -19,7 +19,10 @@ router.get('/', (req, res, next) => {
 router.get('/register', getRegister);
 
 /* POST /register */
-router.post('/register', asyncErrorHandler(postRegister));
+router.post('/register',
+    asyncErrorHandler(checkIfUserExists),
+    asyncErrorHandler(postRegister)
+);
 
 /* GET /login */
 router.get('/login', getLogin);
