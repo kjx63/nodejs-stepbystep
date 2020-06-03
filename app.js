@@ -1,6 +1,7 @@
 const createError = require('http-errors');
 const express = require('express');
 const engine = require('ejs-mate');
+var favicon = require('serve-favicon');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -37,7 +38,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 // uncomment after placing your favicon in /public
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // set true if using this syntax name="post[title]"
