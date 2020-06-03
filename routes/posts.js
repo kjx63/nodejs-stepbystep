@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { asyncErrorHandler } = require('../middleware');
+const { asyncErrorHandler, isLoggedIn } = require('../middleware');
 const {
     postIndex,
     postNew,
@@ -15,10 +15,10 @@ const {
 router.get('/', asyncErrorHandler(postIndex));
 
 /* GET posts new /posts/new */
-router.get('/new', postNew);
+router.get('/new', isLoggedIn, postNew);
 
 /* POST posts create /posts */
-router.post('/', asyncErrorHandler(postCreate));
+router.post('/', isLoggedIn, asyncErrorHandler(postCreate));
 
 /* GET posts show /posts/:id */
 router.get('/:id', asyncErrorHandler(postShow));
